@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_gameFragment_to_gameWonFragment"
             app:destination="@id/gameWonFragment" />
+        <action
+            android:id="@+id/action_gameFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameWonFragment"
@@ -38,4 +41,8 @@
             android:id="@+id/action_gameWonFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/gameOverFragment"
+        android:name="com.example.arrows.gameOver.GameOverFragment"
+        android:label="GameOverFragment" />
 </navigation>

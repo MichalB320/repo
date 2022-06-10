@@ -56,7 +56,7 @@ class GameFragment : Fragment() {
         }
         viewModel.koliduje.observe(viewLifecycleOwner) { newKolission ->
             if (newKolission) {
-                this.findNavController().navigate(R.id.action_gameFragment2_to_gameOverFragment)
+                this.findNavController().navigate(R.id.action_gameFragment_to_gameOverFragment)
             }
         }
     }
