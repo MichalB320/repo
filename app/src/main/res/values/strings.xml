@@ -8,5 +8,7 @@
     <string name="meno">meno</string>
     <string name="play">PLAY</string>
     <string name="potvrd">potvrd</string>
-
+    <string name="arrow_count">%d of %d arrow</string>
+    <string name="pal">PAL!!!</string>
+    <string name="score">Score: %d</string>
 </resources>

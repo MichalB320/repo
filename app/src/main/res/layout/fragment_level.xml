@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="levelViewModel"
+            type="com.example.arrows.level.LevelFragment" />
+    </data>
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -14,5 +14,13 @@
     <fragment
         android:id="@+id/levelFragment5"
         android:name="com.example.arrows.level.LevelFragment"
-        android:label="LevelFragment" />
+        android:label="LevelFragment" >
+        <action
+            android:id="@+id/action_levelFragment5_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.arrows.ui.game.GameFragment"
+        android:label="GameFragment" />
 </navigation>
