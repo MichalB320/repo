@@ -17,4 +17,7 @@
     <string name="meno">meno</string>
     <string name="potvrd">POTVRD</string>
     <string name="_1">1</string>
+    <string name="pal">pal</string>
+    <string name="zadaj_svoje_meno">zadaj svoje meno</string>
+    <string name="play">play</string>
 </resources>
