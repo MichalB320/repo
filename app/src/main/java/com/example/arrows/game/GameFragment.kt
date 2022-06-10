@@ -51,7 +51,7 @@ class GameFragment : Fragment() {
         }
         viewModel.score.observe(viewLifecycleOwner) { newScore ->
             if (newScore == 5 * 15) {
-                this.findNavController().navigate(R.id.action_gameFragment2_to_gameWonFragment)
+                this.findNavController().navigate(R.id.action_gameFragment_to_gameWonFragment)
             }
         }
         viewModel.koliduje.observe(viewLifecycleOwner) { newKolission ->
