@@ -1,4 +1,4 @@
-package com.example.arrows.ui.game
+package com.example.arrows.game
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -13,6 +13,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.arrows.R
 import com.example.arrows.databinding.FragmentGameBinding
+import com.example.arrows.ui.game.ArrowViewModel
+import com.example.arrows.ui.game.GameViewModel
+import com.example.arrows.ui.game.KruhViewModel
+
+private const val SCORE = "score"
+private const val POCITADLO = "pocitadlo"
 
 class GameFragment : Fragment() {
     private val viewModel: GameViewModel by viewModels()
@@ -26,6 +32,11 @@ class GameFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)
         binding.palButton.setOnClickListener { viewModel.onPal() } //TODO: onPal() do XML
+
+        if (savedInstanceState != null) {
+            binding.score.text = savedInstanceState.getInt(SCORE, 0).toString()
+            binding.wordCount.text = savedInstanceState.getInt(POCITADLO, 0).toString()
+        }
 
         return binding.root
     }
@@ -123,5 +134,14 @@ class GameFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val scor: Int = viewModel.score.value!!
+        val poc: Int = viewModel.currentArrowCount.value!!
+
+        outState.putInt(SCORE, scor)
+        outState.putInt(POCITADLO, poc)
     }
 }
