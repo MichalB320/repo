@@ -1,6 +1,5 @@
-package com.example.arrows.ui.game
+package com.example.arrows.game
 
-import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,14 +13,6 @@ class GameViewModel : ViewModel() {
     val koliduje: LiveData<Boolean>
         get() = _koliduje
 
-    fun prehral() {
-        if (_koliduje.value == false) {
-            _koliduje.value = true
-        } else {
-            _koliduje.value = false
-        }
-    }
-
     val stlacil: Boolean
         get() = _stlacil
 
@@ -33,6 +24,14 @@ class GameViewModel : ViewModel() {
 
     val currentArrowCount: LiveData<Int>
         get() = _currentArrowCount
+
+    fun prehral() {
+        if (_koliduje.value == false) {
+            _koliduje.value = true
+        } else {
+            _koliduje.value = false
+        }
+    }
 
     fun onPal() { _stlacil = true }
 

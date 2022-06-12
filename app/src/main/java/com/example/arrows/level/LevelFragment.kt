@@ -1,7 +1,6 @@
 package com.example.arrows.level
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,7 @@ class LevelFragment : Fragment() {
     private lateinit var binding: FragmentLevelBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate<FragmentLevelBinding>(inflater, R.layout.fragment_level, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_level, container, false)
         binding.playButton.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_levelFragment5_to_gameFragment)
         }

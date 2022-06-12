@@ -17,6 +17,9 @@ class ArrowViewModel : ViewModel() {
     val rotacia: MutableLiveData<Array<Float>>
         get() = _rotacia
 
+    val rotArrows: Array<Float>
+        get() = _rotArrows
+
     fun pocitajRotaciuSipky(i: Int) {
         _rotacia.value!![i] = _rotacia.value!![i].plus(3.9999999999999999999f)
         _rotacia.apply { postValue(value) }
