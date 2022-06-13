@@ -35,13 +35,13 @@
                 android:id="@+id/kruh"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="120dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/circle2_debug" />
+                app:srcCompat="@drawable/circle2_debug"
+                android:contentDescription="@string/rotujuci_sa_kruh" />
 
             <Button
                 android:id="@+id/pal_button"
@@ -64,7 +64,8 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kruh"
-                app:srcCompat="@drawable/arrow_2" />
+                app:srcCompat="@drawable/arrow_2"
+                android:contentDescription="@string/sipka_ktora_sa_vystrely_do_kruhu_ako_prva" />
 
             <ImageView
                 android:id="@+id/arrow2"
@@ -76,7 +77,8 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kruh"
-                app:srcCompat="@drawable/arrow_2" />
+                app:srcCompat="@drawable/arrow_2"
+                android:contentDescription="@string/sipka_ktora_sa_vystrely_do_kruhu_ako_druha" />
 
             <ImageView
                 android:id="@+id/arrow3"
@@ -88,8 +90,8 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kruh"
-                app:srcCompat="@drawable/arrow_2" />
-
+                app:srcCompat="@drawable/arrow_2"
+                android:contentDescription="@string/sipka_ktora_sa_vystrely_do_kruhu_ako_tretia" />
 
             <ImageView
                 android:id="@+id/arrow4"
@@ -101,8 +103,8 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kruh"
-                app:srcCompat="@drawable/arrow_2" />
-
+                app:srcCompat="@drawable/arrow_2"
+                android:contentDescription="@string/sipka_ktora_sa_vystrely_do_kruhu_ako_stvrta" />
 
             <ImageView
                 android:id="@+id/arrow5"
@@ -114,10 +116,9 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kruh"
-                app:srcCompat="@drawable/arrow_2" />
-
+                app:srcCompat="@drawable/arrow_2"
+                android:contentDescription="@string/sipka_ktora_sa_vystrely_do_kruhu_ako_piata" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
-
 </layout>

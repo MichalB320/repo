@@ -14,8 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.arrows.R
 import com.example.arrows.databinding.FragmentGameBinding
-import com.example.arrows.ui.game.ArrowViewModel
-import com.example.arrows.ui.game.KruhViewModel
+import kotlin.math.roundToInt
 
 class GameFragment : Fragment() {
     private val viewModel: GameViewModel by viewModels()
@@ -28,7 +27,7 @@ class GameFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)
-        binding.palButton.setOnClickListener { viewModel.onPal() } //TODO: onPal() do XML
+        binding.palButton.setOnClickListener { viewModel.onPal() }
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         return binding.root
     }
@@ -37,7 +36,6 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sipky = arrayOf(binding.arrow1, binding.arrow2, binding.arrow3, binding.arrow4, binding.arrow5)
         odpocitavaj()
-        //binding.lifecycleOwner = viewLifecycleOwner
         viewModel.score.observe(viewLifecycleOwner) { newScore ->
             binding.score.text = getString(R.string.score, newScore)
         }
@@ -86,6 +84,7 @@ class GameFragment : Fragment() {
             val stredKruhuY = binding.kruh.y + 155f // 155 = polomerKruhu + bielaPlochaZaNim
             if (!arrow.jeZapichnuta(stredKruhuY, kruh.getPolomerKruhu(), spicY, spicX, stredKruhuX)) { //!jeZapichnuta(viewModel.index)
                 sipky[viewModel.index].y = sipky[viewModel.index].y - arrow.getPohyb()
+                arrow.setRect(viewModel.index, stredKruhuX.roundToInt() - 5, sipky[viewModel.index].y.toInt() - arrow.getPolkaSipky(), stredKruhuX.roundToInt() + 5, sipky[viewModel.index].y.toInt() + arrow.getPolkaSipky())
                 //viewModel.pocitajSurSipky(viewModel.index)
             } else {
                 viewModel.nestlacil()

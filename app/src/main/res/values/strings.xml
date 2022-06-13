@@ -20,4 +20,10 @@
     <string name="pal">pal</string>
     <string name="zadaj_svoje_meno">zadaj svoje meno</string>
     <string name="play">play</string>
+    <string name="rotujuci_sa_kruh">rotujuci sa kruh</string>
+    <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_prva">sipka ktora sa vystrely do kruhu ako prva</string>
+    <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_druha">sipka ktora sa vystrely do kruhu ako druha</string>
+    <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_tretia">sipka ktora sa vystrely do kruhu ako tretia</string>
+    <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_stvrta">sipka ktora sa vystrely do kruhu ako stvrta</string>
+    <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_piata">sipka ktora sa vystrely do kruhu ako piata</string>
 </resources>

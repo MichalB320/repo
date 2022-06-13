@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameWonFragment"
-        android:name="com.example.arrows.win.GameWonFragment"
+        android:name="com.example.arrows.GameWonFragment"
         android:label="GameWonFragment" >
         <action
             android:id="@+id/action_gameWonFragment_to_levelFragment5"
@@ -43,6 +43,6 @@
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
-        android:name="com.example.arrows.gameOver.GameOverFragment"
+        android:name="com.example.arrows.GameOverFragment"
         android:label="GameOverFragment" />
 </navigation>

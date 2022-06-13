@@ -1,4 +1,4 @@
-package com.example.arrows.ui.game
+package com.example.arrows.game
 
 import android.graphics.Rect
 import androidx.lifecycle.MutableLiveData
@@ -7,18 +7,16 @@ import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
 
+private const val POLKA_SIPKY = 160
+private const val POHYB = 14f //7f
+
 class ArrowViewModel : ViewModel() {
-    private val polkaSipky = 160
     private val polomerKruhu = 145f
-    private val pohyb = 14f //7f
     private var kolizie = arrayOf(Rect(), Rect(), Rect(), Rect(), Rect())
     private val _rotArrows = arrayOf(1.5f, 1.5f, 1.5f, 1.5f, 1.5f)
     private val _rotacia = MutableLiveData(arrayOf(0f, 0f, 0f, 0f, 0f))
     val rotacia: MutableLiveData<Array<Float>>
         get() = _rotacia
-
-    val rotArrows: Array<Float>
-        get() = _rotArrows
 
     fun pocitajRotaciuSipky(i: Int) {
         _rotacia.value!![i] = _rotacia.value!![i].plus(3.9999999999999999999f)
@@ -28,7 +26,7 @@ class ArrowViewModel : ViewModel() {
 
     fun nastavKoliziu(i: Int, stredKruhuX: Float, stredKruhuY: Float, polomerKruhu: Float) {
         if (_rotacia.value!![i].mod(360f) >= 355f || _rotacia.value!![i].mod(360f) <= 5) { //jeZvisloDole
-            setRect(i, stredKruhuX.roundToInt() - 5, stredKruhuY.roundToInt() + polomerKruhu.toInt(), stredKruhuX.roundToInt() + 5,  stredKruhuY.roundToInt() + polomerKruhu.roundToInt() + polkaSipky)
+            setRect(i, stredKruhuX.roundToInt() - 5, stredKruhuY.roundToInt() + polomerKruhu.toInt(), stredKruhuX.roundToInt() + 5,  stredKruhuY.roundToInt() + polomerKruhu.roundToInt() + POLKA_SIPKY + POLKA_SIPKY)
         } else {
             setRect(i, -5, -5, -5,  -5)
         }
@@ -45,11 +43,13 @@ class ArrowViewModel : ViewModel() {
 
     fun jeZapichnuta(stredKruhuY: Float, polomerKruhu: Float, spicY: Float, spicX: Float, stredKruhuX: Float) = !(stredKruhuY + polomerKruhu <= spicY && spicX == stredKruhuX)
 
-    fun getPohyb() = pohyb
+    fun getPohyb() = POHYB
 
-    fun getSurYSip(i: Int) = (polomerKruhu + polkaSipky) * sin(_rotArrows[i])
+    fun getPolkaSipky() = POLKA_SIPKY
 
-    fun getSurXSip(i: Int) = (polomerKruhu + polkaSipky) * cos(_rotArrows[i]) - 50
+    fun getSurYSip(i: Int) = (polomerKruhu + POLKA_SIPKY) * sin(_rotArrows[i])
 
-    private fun setRect(i: Int, left: Int, top: Int, right: Int, bottom: Int) = kolizie[i].set(left, top, right, bottom)
+    fun getSurXSip(i: Int) = (polomerKruhu + POLKA_SIPKY) * cos(_rotArrows[i]) - 50
+
+    fun setRect(i: Int, left: Int, top: Int, right: Int, bottom: Int) = kolizie[i].set(left, top, right, bottom)
 }

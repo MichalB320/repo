@@ -26,11 +26,7 @@ class GameViewModel : ViewModel() {
         get() = _currentArrowCount
 
     fun prehral() {
-        if (_koliduje.value == false) {
-            _koliduje.value = true
-        } else {
-            _koliduje.value = false
-        }
+        _koliduje.value = _koliduje.value == false
     }
 
     fun onPal() { _stlacil = true }
@@ -42,11 +38,4 @@ class GameViewModel : ViewModel() {
     fun pripocitajScore() { _score.value = (_score.value)?.plus(15) }
 
     fun pocitadlo() { _currentArrowCount.value = (_currentArrowCount.value)?.inc() }
-
-    fun reinitializeData() {
-        _stlacil = false
-        _index = 0
-        _score.value = 0
-        _currentArrowCount.value = 0
-    }
 }

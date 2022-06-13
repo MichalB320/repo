@@ -1,14 +1,13 @@
-package com.example.arrows.win
+package com.example.arrows
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.example.arrows.R
 import com.example.arrows.databinding.FragmentGameWonBinding
 
 class GameWonFragment : Fragment() {
