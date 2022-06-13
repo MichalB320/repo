@@ -1,5 +1,6 @@
 package com.example.arrows.win
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ class GameWonFragment : Fragment() {
         binding.pokracovatBotton.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_gameWonFragment_to_levelFragment5)
         }
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR
         return binding.root
     }
 }
