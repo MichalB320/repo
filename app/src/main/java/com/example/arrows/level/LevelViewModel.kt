@@ -4,13 +4,22 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.arrows.database.User
 import com.example.arrows.database.UserDatabaseDao
+import com.example.arrows.formatUsers
 import kotlinx.coroutines.launch
 
-class LevelViewModel(val database: UserDatabaseDao, application: Application) : AndroidViewModel(application) {
-
+class LevelViewModel(private val database: UserDatabaseDao, application: Application) : AndroidViewModel(application) {
     private val _text = MutableLiveData(" ")
     val text: LiveData<String>
         get() = _text
+
+    private val users = database.getAllUsers()
+    val userStrings = Transformations.map(users) {users ->
+        formatUsers(users, application.resources)
+    }
+
+    val potvrdButtonVisible = Transformations.map(users) {
+        null != it
+    }
 
     init {
         viewModelScope.launch {
@@ -18,23 +27,20 @@ class LevelViewModel(val database: UserDatabaseDao, application: Application) : 
         }
     }
 
-    suspend fun insert(user: User) {
-        database.insert(user)
+    fun zapis(meno: String) {
+        viewModelScope.launch {
+            val newUser = User(maxId() + 1, meno, 0)
+            insert(newUser)
+        }
     }
 
-    suspend fun clear() {
-        database.clear()
-    }
+    private suspend fun maxId() = database.maxId()
 
-    suspend fun score(i: Int) {
-        database.score(i)
-    }
+    private suspend fun insert(user: User) = database.insert(user)
 
-    suspend fun meno(i: Int) {
-        database.meno(i)
-    }
+    private suspend fun clear() = database.clear()
 
-    suspend fun maxId(): Int {
-        return database.maxId()
-    }
+    private suspend fun score(i: Int) = database.score(i)
+
+    private suspend fun meno(i: Int) = database.meno(i)
 }

@@ -26,4 +26,9 @@
     <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_tretia">sipka ktora sa vystrely do kruhu ako tretia</string>
     <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_stvrta">sipka ktora sa vystrely do kruhu ako stvrta</string>
     <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_piata">sipka ktora sa vystrely do kruhu ako piata</string>
+    <string name="submit">SUBMIT</string>
+
+    <!-- util -->
+    <string name="hrac"><![CDATA[<b>HRAC: </b>]]></string>
+    <string name="Zscore"><![CDATA[<b> ZISKAL SCORE: </b>]]></string>
 </resources>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.arrows.R
@@ -16,12 +17,14 @@ const val SKUSANIE = "kluc"
 
 class LevelFragment : Fragment() {
     private lateinit var binding: FragmentLevelBinding
+    private val viewModel: LevelViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_level, container, false)
         binding.playButton.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_levelFragment5_to_gameFragment)
         }
+        binding.submitButton.setOnClickListener { onClick() }
 
         if (savedInstanceState != null) {
             binding.vypisovaciePole.setText(savedInstanceState.getString(SKUSANIE))
@@ -35,6 +38,11 @@ class LevelFragment : Fragment() {
         binding.lifecycleOwner = this
 
         return binding.root
+    }
+
+    private fun onClick() {
+        val text = binding.vypisovaciePole.text.toString()
+        viewModel.zapis(text)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
