@@ -6,7 +6,7 @@
     <data>
         <variable
             name="levelViewModel"
-            type="com.example.arrows.level.LevelFragment" />
+            type="com.example.arrows.level.LevelViewModel" />
     </data>
 
     <FrameLayout

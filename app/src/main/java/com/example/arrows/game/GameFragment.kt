@@ -25,7 +25,7 @@ class GameFragment : Fragment() {
     private lateinit var binding: FragmentGameBinding
     private lateinit var sipky: Array<ImageView>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)
         binding.palButton.setOnClickListener { viewModel.onPal() }
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT

@@ -12,7 +12,7 @@ import com.example.arrows.databinding.FragmentGameWonBinding
 
 class GameWonFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = DataBindingUtil.inflate<FragmentGameWonBinding>(inflater, R.layout.fragment_game_won, container, false)
         binding.nieButton.setOnClickListener { activity?.finish() }
         binding.anoButton.setOnClickListener { view: View ->
@@ -21,7 +21,7 @@ class GameWonFragment : Fragment() {
         binding.pokracovatBotton.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_gameWonFragment_to_levelFragment5)
         }
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_USER
         return binding.root
     }
 }

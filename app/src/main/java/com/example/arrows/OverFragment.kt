@@ -11,10 +11,10 @@ import com.example.arrows.databinding.FragmentOverBinding
 
 class GameOverFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = DataBindingUtil.inflate<FragmentOverBinding>(inflater, R.layout.fragment_over, container, false)
         binding.okButton.setOnClickListener { activity?.finish() }
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_USER
         return binding.root
     }
 }
