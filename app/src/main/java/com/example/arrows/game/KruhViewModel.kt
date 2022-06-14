@@ -13,7 +13,5 @@ class KruhViewModel : ViewModel() {
 
     fun getPolomerKruhu() = POLOMER_KRUHU
 
-    fun rotuj() {
-        _rotKruhu.value = (_rotKruhu.value)?.plus(3.9999999999999999999f)
-    }
+    fun rotuj() { _rotKruhu.value = (_rotKruhu.value)?.plus(3.9999999999999999999f) }
 }

@@ -12,6 +12,7 @@
     <!-- LevelFragment -->
     <string name="zadaj_svoje_meno">zadaj svoje meno</string>
     <string name="meno">meno</string>
+    <string name="clear">CLEAR</string>
     <string name="submit">SUBMIT</string>
     <string name="play">play</string>
 

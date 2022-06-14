@@ -17,8 +17,8 @@ interface UserDatabaseDao {
     @Query("SELECT * from user WHERE userId = :key")
     suspend fun get(key: Int): User
 
-    @Query("SELECT nazov_hraca FROM user WHERE userId = :key")
-    suspend fun meno(key: Int): String
+    @Query("SELECT nazov_hraca FROM user WHERE nazov_hraca = :key")
+    suspend fun meno(key: String): String
 
     @Query("SELECT score FROM user WHERE userId = :key")
     suspend fun score(key: Int): Int

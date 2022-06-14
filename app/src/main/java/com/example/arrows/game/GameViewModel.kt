@@ -25,9 +25,7 @@ class GameViewModel : ViewModel() {
     val currentArrowCount: LiveData<Int>
         get() = _currentArrowCount
 
-    fun prehral() {
-        _koliduje.value = _koliduje.value == false
-    }
+    fun prehral() { _koliduje.value = _koliduje.value == false }
 
     fun onPal() { _stlacil = true }
 
