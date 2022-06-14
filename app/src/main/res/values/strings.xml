@@ -1,32 +1,44 @@
 <resources>
     <string name="app_name">Arrows</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="score">Score: %d</string>
-    <string name="arrow_count">%d of %d arrow</string>
-    <string name="start_arrows">START ARROWS</string>
-    <string name="zobrazeniehry">zobrazenieHry</string>
-    <string name="vyhral_si">VYHRAL SI</string>
-    <string name="pokra_ova">Pokračovať</string>
-    <string name="nie">NIE</string>
-    <string name="no">Áno</string>
-    <string name="chce_hra_znova">Chceš hrať znova?</string>
-    <string name="ok">OK!</string>
-    <string name="hra_sa_zru">hra sa zruší</string>
-    <string name="prehral_si">PREHRAL SI</string>
     <string name="zadaj_dvoje_meno">ZADAJ DVOJE MENO:</string>
-    <string name="meno">meno</string>
     <string name="potvrd">POTVRD</string>
     <string name="_1">1</string>
-    <string name="pal">pal</string>
+
+    <!-- TitleFragment -->
+    <string name="start_arrows">START ARROWS</string>
+    <string name="zobrazeniehry">zobrazenieHry</string>
+
+    <!-- LevelFragment -->
     <string name="zadaj_svoje_meno">zadaj svoje meno</string>
+    <string name="meno">meno</string>
+    <string name="submit">SUBMIT</string>
     <string name="play">play</string>
+
+    <!-- GameFragment -->
+    <string name="arrow_count">%d of %d arrow</string>
+    <string name="score">Score: %d</string>
+    <string name="pal">pal</string>
     <string name="rotujuci_sa_kruh">rotujuci sa kruh</string>
     <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_prva">sipka ktora sa vystrely do kruhu ako prva</string>
     <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_druha">sipka ktora sa vystrely do kruhu ako druha</string>
     <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_tretia">sipka ktora sa vystrely do kruhu ako tretia</string>
     <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_stvrta">sipka ktora sa vystrely do kruhu ako stvrta</string>
     <string name="sipka_ktora_sa_vystrely_do_kruhu_ako_piata">sipka ktora sa vystrely do kruhu ako piata</string>
-    <string name="submit">SUBMIT</string>
+
+    <!-- GameWonFragment -->
+    <string name="vyhral_si">VYHRAL SI</string>
+    <string name="ziskal_si">ziskal si: %d bodov</string>
+    <string name="chce_hra_znova">Chceš hrať znova?</string>
+    <string name="no">Áno</string>
+    <string name="nie">NIE</string>
+    <string name="pokra_ova">Pokračovať</string>
+
+    <!-- OverFragment -->
+    <string name="prehral_si">PREHRAL SI</string>
+    <string name="nahral_si">nahral si: %d bodov</string>
+    <string name="hra_sa_zru">hra sa zruší</string>
+    <string name="ok">OK!</string>
 
     <!-- util -->
     <string name="hrac"><![CDATA[<b>HRAC: </b>]]></string>

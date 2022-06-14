@@ -10,13 +10,16 @@ import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.arrows.ActivityViewModel
 import com.example.arrows.R
 import com.example.arrows.databinding.FragmentGameBinding
 import kotlin.math.roundToInt
 
 class GameFragment : Fragment() {
+    private val activityModel: ActivityViewModel by activityViewModels()
     private val viewModel: GameViewModel by viewModels()
     private val kruh: KruhViewModel by viewModels()
     private val arrow: ArrowViewModel by viewModels()
@@ -51,6 +54,7 @@ class GameFragment : Fragment() {
             }
         }
         viewModel.score.observe(viewLifecycleOwner) { newScore ->
+            activityModel.setScore(newScore)
             if (newScore == 5 * 15) {
                 this.findNavController().navigate(R.id.action_gameFragment_to_gameWonFragment)
             }
