@@ -1,4 +1,4 @@
-package com.example.arrows.game
+package com.example.arrows.fragmenty.game
 
 import android.graphics.Rect
 import androidx.lifecycle.MutableLiveData

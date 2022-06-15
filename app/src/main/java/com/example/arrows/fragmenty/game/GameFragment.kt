@@ -1,4 +1,4 @@
-package com.example.arrows.game
+package com.example.arrows.fragmenty.game
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.arrows.ActivityViewModel
+import com.example.arrows.activity.ActivityViewModel
 import com.example.arrows.R
 import com.example.arrows.databinding.FragmentGameBinding
 import kotlin.math.roundToInt

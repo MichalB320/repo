@@ -6,7 +6,7 @@
     <data>
         <variable
             name="levelViewModel"
-            type="com.example.arrows.level.LevelViewModel" />
+            type="com.example.arrows.fragmenty.level.LevelViewModel" />
     </data>
 
     <FrameLayout
@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/zadaj_meno_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/zadaj_svoje_meno"
@@ -31,67 +31,62 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout2"
+                android:id="@+id/textove_pole"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                app:layout_constraintTop_toBottomOf="@+id/zadaj_meno_view">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/vypisovacie_pole"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/meno"
-                    android:textColorHint="#616161" />
+                    android:textColorHint="#616161"
+                    tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:enabled="@{levelViewModel.clearVisible}"
+                android:onClick="@{() -> levelViewModel.onClear()}"
+                android:text="@string/clear"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@+id/submit_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textove_pole" />
 
             <Button
                 android:id="@+id/submit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="@{levelViewModel.potvrdButtonVisible}"
+                android:enabled="@{levelViewModel.submitVisible}"
                 android:text="@string/submit"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-                app:layout_constraintStart_toEndOf="@id/button"/>
+                app:layout_constraintTop_toBottomOf="@+id/textove_pole"
+                app:layout_constraintStart_toEndOf="@id/clear_button"/>
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/clear"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/white"
-                android:onClick="@{() -> levelViewModel.onClear()}"
-                app:layout_constraintEnd_toStartOf="@+id/submit_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
-
-            <ScrollView
-                android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/users_list"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/playButton"
-                app:layout_constraintTop_toBottomOf="@+id/submit_button">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@{levelViewModel.userStrings}" />
-            </ScrollView>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clear_button" />
 
             <Button
                 android:id="@+id/playButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:enabled="@{levelViewModel.playVisible}"
                 android:text="@string/play"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

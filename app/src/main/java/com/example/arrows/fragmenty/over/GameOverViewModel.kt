@@ -1,4 +1,4 @@
-package com.example.arrows.over
+package com.example.arrows.fragmenty.over
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -9,9 +9,9 @@ import kotlinx.coroutines.launch
 
 class GameOverViewModel(private val database: UserDatabaseDao, application: Application) : AndroidViewModel(application) {
 
-    fun updateniscore(hodnota: Int) {
+    fun updateniscore(hodnota: Int, meno: String) {
         viewModelScope.launch {
-            val user: User = database.get(1)
+            val user: User = database.getUser(meno)
             user.score = hodnota
             database.update(user)
         }

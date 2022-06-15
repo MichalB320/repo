@@ -1,4 +1,4 @@
-package com.example.arrows
+package com.example.arrows.activity
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

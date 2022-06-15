@@ -17,6 +17,7 @@
     <string name="play">play</string>
     <string name="toastTRUE">meno: %s sa zapisalo do databazy</string>
     <string name="toastFASLE">%s uz je zapisany</string>
+    <string name="este_raz">skus este raz</string>
 
     <!-- GameFragment -->
     <string name="arrow_count">%d of %d arrow</string>
@@ -45,9 +46,13 @@
     <string name="hra_sa_zru">hra sa zruší</string>
     <string name="ok">OK!</string>
 
+    <!-- Factory -->
+    <string name="vyhod">Unknown ViewModel class</string>
+
     <!-- util -->
     <string name="hrac"><![CDATA[<b>HRAC: </b>]]></string>
     <string name="Zscore"><![CDATA[<b> ZISKAL SCORE: </b>]]></string>
+    <string name="vypis">HRAC: %s, ZISKAL SCORE: %d</string>
 
     <!-- share_menu -->
     <string name="share">share</string>

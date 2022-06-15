@@ -1,4 +1,4 @@
-package com.example.arrows
+package com.example.arrows.fragmenty.over
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -9,10 +9,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import com.example.arrows.activity.ActivityViewModel
+import com.example.arrows.R
 import com.example.arrows.database.UserDatabase
 import com.example.arrows.databinding.FragmentOverBinding
-import com.example.arrows.over.GameOverViewModel
-import com.example.arrows.over.GameOverViewModelFactory
 
 class GameOverFragment : Fragment() {
     private val activityModel: ActivityViewModel by activityViewModels()
@@ -28,11 +28,11 @@ class GameOverFragment : Fragment() {
         binding.lifecycleOwner = this
         activityModel.score.observe(viewLifecycleOwner) { newScore ->
             if (newScore != 0) {
-                viewModel.updateniscore(newScore)
+                val meno: String = activityModel.meno.value.toString()
+                viewModel.updateniscore(newScore, meno)
             }
         }
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_USER
-
         binding.zobrazovacScore.text = getString(R.string.nahral_si, activityModel.score.value)
         return binding.root
     }

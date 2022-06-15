@@ -1,8 +1,9 @@
-package com.example.arrows.level
+package com.example.arrows.fragmenty.level
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.arrows.R
 import com.example.arrows.database.UserDatabaseDao
 
 class LevelViewModelFactory(private val dataSource: UserDatabaseDao, private val application: Application) : ViewModelProvider.Factory {
@@ -11,6 +12,6 @@ class LevelViewModelFactory(private val dataSource: UserDatabaseDao, private val
         if (modelClass.isAssignableFrom(LevelViewModel::class.java)) {
             return LevelViewModel(dataSource, application) as T
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+        throw IllegalArgumentException(application.getString(R.string.vyhod))
     }
 }

@@ -6,13 +6,13 @@
     <data>
         <variable
             name="gameWonViewModel"
-            type="com.example.arrows.database.won.GameWonViewModel" />
+            type="com.example.arrows.fragmenty.won.GameWonViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".GameWonFragment">
+        tools:context=".fragmenty.won.GameWonFragment">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

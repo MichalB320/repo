@@ -6,13 +6,13 @@
     <data>
         <variable
             name="gameOverViewModel"
-            type="com.example.arrows.over.GameOverViewModel" />
+            type="com.example.arrows.fragmenty.over.GameOverViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".GameOverFragment">
+        tools:context=".fragmenty.over.GameOverFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

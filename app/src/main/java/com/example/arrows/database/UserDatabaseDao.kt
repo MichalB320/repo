@@ -21,14 +21,20 @@ interface UserDatabaseDao {
     @Query("SELECT * from user WHERE userId = :key")
     suspend fun get(key: Int): User
 
+    @Query("SELECT * FROM user WHERE nazov_hraca = :meno")
+    suspend fun getUser(meno: String): User
+
     @Query("SELECT nazov_hraca FROM user WHERE nazov_hraca = :key")
     suspend fun meno(key: String): String
 
-    @Query("SELECT score FROM user WHERE userId = :key")
-    suspend fun score(key: Int): Int
+//    @Query("SELECT score FROM user WHERE userId = :key")
+//    suspend fun score(key: Int): Int
 
     @Query("SELECT max(userId) FROM user")
     suspend fun maxId(): Int
+
+    @Query("SELECT count(userId) FROM user")
+    suspend fun countUser(): Int
 
     @Query("SELECT * FROM user")
     fun getAllUsers(): LiveData<List<User>>
