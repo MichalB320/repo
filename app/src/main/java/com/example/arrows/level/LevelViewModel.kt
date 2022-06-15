@@ -1,7 +1,6 @@
 package com.example.arrows.level
 
 import android.app.Application
-import android.content.Context
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.*
@@ -11,7 +10,6 @@ import com.example.arrows.formatUsers
 import kotlinx.coroutines.launch
 
 class LevelViewModel(private val database: UserDatabaseDao, application: Application) : AndroidViewModel(application) {
-    private var jeZap = false
     private val _text = MutableLiveData(" ")
     val text: LiveData<String>
         get() = _text
@@ -31,18 +29,18 @@ class LevelViewModel(private val database: UserDatabaseDao, application: Applica
         }
     }
 
-    fun zapis(meno: String, context: FragmentActivity?) {
+    fun zapis(meno: String, context: FragmentActivity?, textTrue: String, textFalse: String) {
         viewModelScope.launch {
             if (maxId() != null && meno != meno(meno)) {
                 val newUser = User(maxId() + 1, meno, 0)
                 insert(newUser)
-                Toast.makeText(context, "meno: $meno sa zapisalo do databazy", Toast.LENGTH_SHORT).show() // TODO cez STRINGY
+                Toast.makeText(context, textTrue, Toast.LENGTH_LONG).show()
             } else if (maxId() == null) {
                 val newUser = User(1 , meno, 0)
                 insert(newUser)
-                Toast.makeText(context, "meno: $meno sa zapisalo do databazy", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, textTrue, Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(context, "$meno uz je zapisany", Toast.LENGTH_SHORT).show() // TODO cezSTRIGNY
+                Toast.makeText(context, textFalse, Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -50,6 +48,14 @@ class LevelViewModel(private val database: UserDatabaseDao, application: Applica
     fun onClear() {
         viewModelScope.launch {
             clear()
+        }
+    }
+
+    fun updateScore(hodnota: Int) {
+        viewModelScope.launch {
+            val user: User = database.get(1)
+            user.score = hodnota
+            database.update(user)
         }
     }
 

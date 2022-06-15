@@ -14,5 +14,5 @@ data class User(
     val meno: String,
 
     @ColumnInfo(name = "score")
-    val score: Int
+    var score: Int
 )

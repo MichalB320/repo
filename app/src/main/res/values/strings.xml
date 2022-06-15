@@ -15,6 +15,8 @@
     <string name="clear">CLEAR</string>
     <string name="submit">SUBMIT</string>
     <string name="play">play</string>
+    <string name="toastTRUE">meno: %s sa zapisalo do databazy</string>
+    <string name="toastFASLE">%s uz je zapisany</string>
 
     <!-- GameFragment -->
     <string name="arrow_count">%d of %d arrow</string>
@@ -34,6 +36,8 @@
     <string name="no">Áno</string>
     <string name="nie">NIE</string>
     <string name="pokra_ova">Pokračovať</string>
+    <string name="sprava">%s dosiahol/-la az %d score!!!</string>
+    <string name="intent_type">text/plain</string>
 
     <!-- OverFragment -->
     <string name="prehral_si">PREHRAL SI</string>
@@ -44,4 +48,7 @@
     <!-- util -->
     <string name="hrac"><![CDATA[<b>HRAC: </b>]]></string>
     <string name="Zscore"><![CDATA[<b> ZISKAL SCORE: </b>]]></string>
+
+    <!-- share_menu -->
+    <string name="share">share</string>
 </resources>
