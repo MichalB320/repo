@@ -21,6 +21,7 @@ class TitleFragment : Fragment() {
         binding.tlacidlo.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_titleFragment3_to_levelFragment5)
         }
+
         return binding.root
     }
 }
