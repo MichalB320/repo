@@ -18,6 +18,9 @@ import com.example.arrows.activity.MainActivity
 import com.example.arrows.databinding.FragmentGameBinding
 import kotlin.math.roundToInt
 
+/**
+ * Fragment hry
+ */
 class GameFragment : Fragment() {
     private val activityModel: ActivityViewModel by activityViewModels()
     private val viewModel: GameViewModel by viewModels()
@@ -31,7 +34,6 @@ class GameFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)
         binding.palButton.setOnClickListener { viewModel.onPal() }
-        //activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         return binding.root
     }
 
@@ -68,6 +70,9 @@ class GameFragment : Fragment() {
         odpocitavaj()
     }
 
+    /**
+     * metóda inicializuje timer: CountDownTimer
+     */
     private fun odpocitavaj() {
         timer = object : CountDownTimer(dlzkaHry, 10) { //countDownInterval = 1
             override fun onTick(p0: Long) { //p0: Long
@@ -81,6 +86,9 @@ class GameFragment : Fragment() {
         }.start()
     }
 
+    /**
+     * metóda vykresluje zobrazenie hry
+     */
     private fun tik() {
             kruh.rotuj()
             val event: Float = (activity as MainActivity).getEvent().values[0]
@@ -132,6 +140,9 @@ class GameFragment : Fragment() {
 
     }
 
+    /**
+     * metóda vykresluje šípky okolo kruhu
+     */
     private fun rotujOkoloKruhu() {
         val stredKruhuY = binding.kruh.y + 155f // 155 = polomerKruhu + bielaPlochaZaNim
         val stredKruhuX = binding.kruh.x + kruh.getPolomerKruhu()

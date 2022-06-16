@@ -14,6 +14,9 @@ import com.example.arrows.R
 import com.example.arrows.database.UserDatabase
 import com.example.arrows.databinding.FragmentGameWonBinding
 
+/**
+ * fragment vyhratej hry
+ */
 class GameWonFragment : Fragment() {
     private val activityModel: ActivityViewModel by activityViewModels()
 
@@ -35,7 +38,7 @@ class GameWonFragment : Fragment() {
         activityModel.score.observe(viewLifecycleOwner) { newScore ->
             if (newScore != 0) {
                 val meno = activityModel.meno.value.toString()
-                viewModel.updateniscore(newScore, meno)
+                viewModel.updateniScore(newScore, meno)
             }
         }
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_USER

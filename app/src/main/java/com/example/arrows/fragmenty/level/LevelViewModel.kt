@@ -11,10 +11,14 @@ import com.example.arrows.database.User
 import com.example.arrows.database.UserDatabaseDao
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel pre levelFragment
+ */
 class LevelViewModel(private val database: UserDatabaseDao, application: Application) : AndroidViewModel(application) {
-    private var _submitVisible = MutableLiveData(false)
+    private var _submitVisible = MutableLiveData(true)
     private var _clearVisible = MutableLiveData(false)
     private var _playVisible = MutableLiveData(false)
+    private var _readyVisible = MutableLiveData(false)
     private val _text = MutableLiveData(" ")
     val text: LiveData<String>
         get() = _text
@@ -28,35 +32,32 @@ class LevelViewModel(private val database: UserDatabaseDao, application: Applica
     val playVisible: MutableLiveData<Boolean>
         get() = _playVisible
 
-    val users = database.getAllUsers()
-//    val userStrings = Transformations.map(users) { users ->
-//        formatUsers(users, application.resources)
-//    }
+    val readyVisible: MutableLiveData<Boolean>
+        get() = _readyVisible
 
-//    var potvrdButtonVisible = Transformations.map(users) {
-//        true
-//    }
+    val users = database.getAllUsers()
+
+    private var _oznacil = false
+    val oznacil: Boolean
+        get() = _oznacil
 
     init {
         viewModelScope.launch {
-
-            //insert(User(1, "misko", 0))
             database.getAllUsers()
-
-
             if (pocetUsers() >= 1) {
-                _submitVisible.value = true
                 _clearVisible.value = true
             }
             if (pocetUsers() < 1) {
-                _submitVisible.value = false
                 _clearVisible.value = false
             }
-            _submitVisible.value = true // odstranit potom
-            _playVisible.value = false //false
         }
     }
 
+    /**
+     * metóda zpíše do databázy nového užívateľa
+     *
+     * @param meno, context, textTrue, textFalse
+     */
     fun zapis(meno: String, context: FragmentActivity?, textTrue: String, textFalse: String) {
         viewModelScope.launch {
             if (pocetUsers() >= 1 && meno != meno(meno)) {
@@ -75,6 +76,9 @@ class LevelViewModel(private val database: UserDatabaseDao, application: Applica
         }
     }
 
+    /**
+     * kliknutím na tlačidla CLEAR sa databáza vymaže
+     */
     fun onClear() {
         viewModelScope.launch {
             clear()
@@ -82,20 +86,36 @@ class LevelViewModel(private val database: UserDatabaseDao, application: Applica
         }
     }
 
+    /**
+     * na kliknutie tlacidla v recycleView sa zobrazia tlacidla
+     */
     fun onClick() {
-        setPlayButtonVisibility()
+        setReadyButtonVisibility(true)
+        _oznacil = true
     }
 
-    fun updateScore(hodnota: Int) {
-        viewModelScope.launch {
-            val user: User = database.get(1)
-            user.score = hodnota
-            database.update(user)
-        }
+//    fun updateScore(hodnota: Int) {
+//        viewModelScope.launch {
+//            val user: User = database.get(1)
+//            user.score = hodnota
+//            database.update(user)
+//        }
+//    }
+
+    /**
+     * PlayButton sa zviditelní
+     */
+    fun setPlayButtonVisibility() {
+        _playVisible.value = true
     }
 
-    private fun setPlayButtonVisibility() {
-        _playVisible.value = _playVisible.value != true
+    /**
+     * ReadyButton sa zviditelní podla parametra
+     *
+     * @param value
+     */
+    fun setReadyButtonVisibility(value: Boolean) {
+        _readyVisible.value = value
     }
 
     private suspend fun maxId(): Int = database.maxId()
@@ -107,9 +127,4 @@ class LevelViewModel(private val database: UserDatabaseDao, application: Applica
     private suspend fun meno(i: String) = database.meno(i)
 
     private suspend fun pocetUsers() = database.countUser()
-
-    fun onUserClicked(userId: Int) {
-        //setPlayButtonVisibility()
-
-    }
 }

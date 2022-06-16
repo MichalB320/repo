@@ -5,6 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+/**
+ * Databáza, ktorá ukladá informácie o používateľovi
+ */
 @Database(entities = [User::class], version = 1, exportSchema = false)
 abstract class UserDatabase : RoomDatabase() {
     abstract val userDatabaseDao: UserDatabaseDao
@@ -13,6 +16,12 @@ abstract class UserDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: UserDatabase? = null
 
+        /**
+         * Vráti inštanciu databázy
+         *
+         * @param context
+         * @return instance
+         */
         fun getInstance(context: Context): UserDatabase {
             synchronized(this) {
                 var instance = INSTANCE

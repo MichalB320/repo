@@ -10,6 +10,9 @@ import androidx.navigation.findNavController
 import com.example.arrows.R
 import com.example.arrows.databinding.FragmentTitleBinding
 
+/**
+ * titulný fragmnet
+ */
 class TitleFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

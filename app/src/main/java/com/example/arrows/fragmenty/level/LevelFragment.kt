@@ -1,26 +1,30 @@
 package com.example.arrows.fragmenty.level
 
 import android.content.pm.ActivityInfo
+import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.arrows.R
 import com.example.arrows.activity.ActivityViewModel
 import com.example.arrows.database.UserDatabase
 import com.example.arrows.databinding.FragmentLevelBinding
 
-const val SKUSANIE = "kluc"
+private const val SKUSANIE = "kluc"
 
+/**
+ * Fragment zapisovania uzivatelov
+ */
 class LevelFragment : Fragment() {
     private lateinit var binding: FragmentLevelBinding
-    //private val viewModel: LevelViewModel by viewModels()
     private val activityModel: ActivityViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -28,11 +32,6 @@ class LevelFragment : Fragment() {
         binding.playButton.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_levelFragment5_to_gameFragment)
         }
-
-        binding.readyButton.setOnClickListener {
-            activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        }
-
 
         if (savedInstanceState != null) {
             binding.vypisovaciePole.setText(savedInstanceState.getString(SKUSANIE))
@@ -44,16 +43,10 @@ class LevelFragment : Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory).get(LevelViewModel::class.java)
         binding.levelViewModel = viewModel
 
-        val adapter = UserAdapter(UserListener { userId ->
-            viewModel.onUserClicked(userId)
-            Log.i("LevelFragment", "klikol")
-            //Toast.makeText(context, "hello", Toast.LENGTH_LONG).show()
-        })
-
-//        val adapter = UserAdapter(UserListener { nightId ->
-//            Toast.makeText(context, "${nightId}", Toast.LENGTH_LONG).show()
+//        val adapter = UserAdapter(UserListener { userId ->
+//            viewModel.onUserClicked(userId)
 //        })
-        //binding.sleepList.adapter = adapter
+        val adapter = UserAdapter()
         binding.usersList.adapter = adapter
 
         viewModel.users.observe(viewLifecycleOwner) {
@@ -61,51 +54,50 @@ class LevelFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
-
-//        viewModel.users.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                //adapter.data = it
-//                adapter.submitList(it)
-//            }
-//        })
-
+        binding.usersList.layoutManager = GridLayoutManager(this.activity, 2)
         binding.lifecycleOwner = this
 
-        activityModel.score.observe(viewLifecycleOwner) { newScore ->
-            if (newScore != 0) {
-                viewModel.updateScore(newScore)
-            }
+//        activityModel.score.observe(viewLifecycleOwner) { newScore ->
+//            if (newScore != 0) {
+//                viewModel.updateScore(newScore)
+//            }
+//        }
+
+        binding.readyButton.setOnClickListener {
+            activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            viewModel.setPlayButtonVisibility()
+            viewModel.setReadyButtonVisibility(false)
         }
 
         binding.submitButton.setOnClickListener {
             val text = binding.vypisovaciePole.text.toString()
+            binding.vypisovaciePole.text = null
             val textTrue = getString(R.string.toastTRUE, text)
             val textFalse = getString(R.string.toastFASLE, text)
             viewModel.zapis(text, activity, textTrue, textFalse)
             activityModel.setMeno(text)
         }
-
-        //binding.submitButton.isEnabled = true
         return binding.root
     }
 
-//    private fun onClick() {
-//        val text = binding.vypisovaciePole.text.toString()
-//        val textTrue = getString(R.string.toastTRUE, text)
-//        val textFalse = getString(R.string.toastFASLE, text)
-//        viewModel.zapis(text, activity, textTrue, textFalse)
-//        //activityModel.setMeno(text)
-//    }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(SKUSANIE, binding.vypisovaciePole.text.toString()) //TODO zakazat fragmentom sa vracat spet
+        outState.putString(SKUSANIE, binding.vypisovaciePole.text.toString())
     }
 
-    fun onClick(meno: String, score: Int) {
+    /**
+     * metoda ktora sa vykona na kliknute tlacidla v recycleView
+     *
+     * @param meno, score, button, res
+     */
+    fun onClick(meno: String, score: Int, button: Button, res: Resources) {
         val model = ViewModelProvider(this).get(LevelViewModel::class.java)
-        model.onClick()
-        activityModel.meno.value = meno
-        activityModel.score.value = score
+        if (!model.oznacil) {
+            activityModel.meno.value = meno
+            activityModel.score.value = score
+            button.setTextColor(res.getColor(R.color.white))
+            button.setBackgroundColor(res.getColor(R.color.black))
+            model.onClick()
+        }
     }
 }

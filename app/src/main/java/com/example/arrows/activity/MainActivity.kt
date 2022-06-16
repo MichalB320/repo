@@ -9,19 +9,31 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.arrows.R
 
+/**
+ * This main activity is just a container for our fragments,
+ * where the real action is.
+ */
 class MainActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
-    private lateinit var eventy: SensorEvent
+    private lateinit var events: SensorEvent
 
+    /**
+     * Vytvorí activitu
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(R.layout.activity_main)
 
-        pripravSensory()
+        pripravSensor()
     }
 
-    private fun pripravSensory() {
+    /**
+     * Pripraví sensory - inicializuje senesorManager
+     */
+    private fun pripravSensor() {
     sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
 
         sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)?.also {
@@ -34,18 +46,35 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
     }
 
+    /**
+     * Každý pohyb senzora ukladá do atribútu events
+     *
+     * @param event
+     */
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
-            eventy = event
+            events = event
         }
     }
 
+    /**
+     * Zistuje zmenu presnosti senzora
+     *
+     * @param accuracy
+     * @param sensor
+     * @return
+     */
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         return
     }
 
+    /**
+     * Vráti atribut events
+     *
+     * @return events
+     */
     fun getEvent(): SensorEvent {
-        return eventy
+        return events
     }
 }
 
