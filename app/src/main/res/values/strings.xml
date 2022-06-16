@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">Arrows</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="zadaj_dvoje_meno">ZADAJ DVOJE MENO:</string>
-    <string name="potvrd">POTVRD</string>
-    <string name="_1">1</string>
 
     <!-- TitleFragment -->
     <string name="start_arrows">START ARROWS</string>
@@ -14,6 +10,7 @@
     <string name="meno">meno</string>
     <string name="clear">CLEAR</string>
     <string name="submit">SUBMIT</string>
+    <string name="ready">ready</string>
     <string name="play">play</string>
     <string name="toastTRUE">meno: %s sa zapisalo do databazy</string>
     <string name="toastFASLE">%s uz je zapisany</string>

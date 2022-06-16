@@ -1,6 +1,5 @@
 package com.example.arrows.fragmenty.game
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -13,8 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.arrows.activity.ActivityViewModel
 import com.example.arrows.R
+import com.example.arrows.activity.ActivityViewModel
+import com.example.arrows.activity.MainActivity
 import com.example.arrows.databinding.FragmentGameBinding
 import kotlin.math.roundToInt
 
@@ -31,14 +31,14 @@ class GameFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)
         binding.palButton.setOnClickListener { viewModel.onPal() }
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        //activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sipky = arrayOf(binding.arrow1, binding.arrow2, binding.arrow3, binding.arrow4, binding.arrow5)
-        odpocitavaj()
+
         viewModel.score.observe(viewLifecycleOwner) { newScore ->
             binding.score.text = getString(R.string.score, newScore)
         }
@@ -56,6 +56,7 @@ class GameFragment : Fragment() {
         viewModel.score.observe(viewLifecycleOwner) { newScore ->
             activityModel.setScore(newScore)
             if (newScore == 5 * 15) {
+                timer.cancel()
                 this.findNavController().navigate(R.id.action_gameFragment_to_gameWonFragment)
             }
         }
@@ -64,6 +65,7 @@ class GameFragment : Fragment() {
                 this.findNavController().navigate(R.id.action_gameFragment_to_gameOverFragment)
             }
         }
+        odpocitavaj()
     }
 
     private fun odpocitavaj() {
@@ -80,35 +82,54 @@ class GameFragment : Fragment() {
     }
 
     private fun tik() {
-        kruh.rotuj()
-        if (viewModel.stlacil) {
-            val spicY = sipky[viewModel.index].y - 150 - 5 //binding.arrow1.y - 150 - 5//getSpicY(viewModel.index)
-            val spicX = sipky[viewModel.index].x + 50 + 2 //binding.arrow1.x + 50 + 2//getSpicX(viewModel.index)
-            val stredKruhuX = binding.kruh.x + kruh.getPolomerKruhu()
-            val stredKruhuY = binding.kruh.y + 155f // 155 = polomerKruhu + bielaPlochaZaNim
-            if (!arrow.jeZapichnuta(stredKruhuY, kruh.getPolomerKruhu(), spicY, spicX, stredKruhuX)) { //!jeZapichnuta(viewModel.index)
-                sipky[viewModel.index].y = sipky[viewModel.index].y - arrow.getPohyb()
-                arrow.setRect(viewModel.index, stredKruhuX.roundToInt() - 5, sipky[viewModel.index].y.toInt() - arrow.getPolkaSipky(), stredKruhuX.roundToInt() + 5, sipky[viewModel.index].y.toInt() + arrow.getPolkaSipky())
-                //viewModel.pocitajSurSipky(viewModel.index)
-            } else {
-                viewModel.nestlacil()
-                viewModel.pripocitajScore()
-                viewModel.pocitadlo()
-                if(!viewModel.stlacil) {
-                    viewModel.zvysIndex()
-                    if (viewModel.index < 5) {
-                        sipky[viewModel.index].isVisible = true
+            kruh.rotuj()
+            val event: Float = (activity as MainActivity).getEvent().values[0]
+            viewModel.setSensor(event)
+            if (viewModel.stlacil || viewModel.pohybujSa) {
+                val spicY =
+                    sipky[viewModel.index].y - 150 - 5 //binding.arrow1.y - 150 - 5//getSpicY(viewModel.index)
+                val spicX =
+                    sipky[viewModel.index].x + 50 + 2 //binding.arrow1.x + 50 + 2//getSpicX(viewModel.index)
+                val stredKruhuX = binding.kruh.x + kruh.getPolomerKruhu()
+                val stredKruhuY = binding.kruh.y + 155f // 155 = polomerKruhu + bielaPlochaZaNim
+                if (!arrow.jeZapichnuta(
+                        stredKruhuY,
+                        kruh.getPolomerKruhu(),
+                        spicY,
+                        spicX,
+                        stredKruhuX
+                    )
+                ) { //!jeZapichnuta(viewModel.index)
+                    sipky[viewModel.index].y = sipky[viewModel.index].y - arrow.getPohyb()
+                    arrow.setRect(
+                        viewModel.index,
+                        stredKruhuX.roundToInt() - 5,
+                        sipky[viewModel.index].y.toInt() - arrow.getPolkaSipky(),
+                        stredKruhuX.roundToInt() + 5,
+                        sipky[viewModel.index].y.toInt() + arrow.getPolkaSipky()
+                    )
+                    //viewModel.pocitajSurSipky(viewModel.index)
+                } else {
+                    viewModel.nepohybujSa()
+                    viewModel.nestlacil()
+                    viewModel.pripocitajScore()
+                    viewModel.pocitadlo()
+                    if (!viewModel.stlacil) {
+                        viewModel.zvysIndex()
+                        if (viewModel.index < 5) {
+                            sipky[viewModel.index].isVisible = true
+                        }
                     }
                 }
             }
-        }
-        rotujOkoloKruhu()
-        for (i in 0..4) {
-            if (arrow.koliduje(i)) {
-                timer.cancel() // zastavy odpocet
-                viewModel.prehral()
+            rotujOkoloKruhu()
+            for (i in 0..4) {
+                if (arrow.koliduje(i)) {
+                    timer.cancel() // zastavy odpocet
+                    viewModel.prehral()
+                }
             }
-        }
+
     }
 
     private fun rotujOkoloKruhu() {
@@ -131,3 +152,18 @@ class GameFragment : Fragment() {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

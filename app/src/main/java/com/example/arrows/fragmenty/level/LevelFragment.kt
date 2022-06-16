@@ -1,5 +1,6 @@
 package com.example.arrows.fragmenty.level
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -26,6 +27,10 @@ class LevelFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_level, container, false)
         binding.playButton.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_levelFragment5_to_gameFragment)
+        }
+
+        binding.readyButton.setOnClickListener {
+            activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
 
 
