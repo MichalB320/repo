@@ -1,4 +1,4 @@
-package com.example.arrows.fragmenty.level
+package com.example.arrows.fragmenty.login
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -36,7 +36,7 @@ class UserAdapter: ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback())
             binding.user = item
             binding.klikatko.text = res.getString(R.string.vypis, meno, score)
             binding.klikatko.setOnClickListener {
-                val frag = itemView.findFragment<LevelFragment>()
+                val frag = itemView.findFragment<LoginFragment>()
                 frag.onClick(meno, score, binding.klikatko, res)
             }
             binding.executePendingBindings()

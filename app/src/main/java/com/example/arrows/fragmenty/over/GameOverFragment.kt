@@ -1,6 +1,8 @@
 package com.example.arrows.fragmenty.over
 
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import android.media.VolumeShaper
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

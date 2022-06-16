@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/levelFragment5"
-        android:name="com.example.arrows.fragmenty.level.LevelFragment"
+        android:name="com.example.arrows.fragmenty.login.LoginFragment"
         android:label="LevelFragment" >
         <action
             android:id="@+id/action_levelFragment5_to_gameFragment"

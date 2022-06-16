@@ -1,6 +1,7 @@
-package com.example.arrows.fragmenty.level
+package com.example.arrows.fragmenty.login
 
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,19 +17,19 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.arrows.R
 import com.example.arrows.activity.ActivityViewModel
 import com.example.arrows.database.UserDatabase
-import com.example.arrows.databinding.FragmentLevelBinding
+import com.example.arrows.databinding.FragmentLoginBinding
 
 private const val SKUSANIE = "kluc"
 
 /**
  * Fragment zapisovania uzivatelov
  */
-class LevelFragment : Fragment() {
-    private lateinit var binding: FragmentLevelBinding
+class LoginFragment : Fragment() {
+    private lateinit var binding: FragmentLoginBinding
     private val activityModel: ActivityViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_level, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         binding.playButton.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_levelFragment5_to_gameFragment)
         }
@@ -39,8 +40,8 @@ class LevelFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = UserDatabase.getInstance(application).userDatabaseDao
-        val viewModelFactory = LevelViewModelFactory(dataSource, application)
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(LevelViewModel::class.java)
+        val viewModelFactory = LoginViewModelFactory(dataSource, application)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
         binding.levelViewModel = viewModel
 
 //        val adapter = UserAdapter(UserListener { userId ->
@@ -91,7 +92,7 @@ class LevelFragment : Fragment() {
      * @param meno, score, button, res
      */
     fun onClick(meno: String, score: Int, button: Button, res: Resources) {
-        val model = ViewModelProvider(this).get(LevelViewModel::class.java)
+        val model = ViewModelProvider(this).get(LoginViewModel::class.java)
         if (!model.oznacil) {
             activityModel.meno.value = meno
             activityModel.score.value = score

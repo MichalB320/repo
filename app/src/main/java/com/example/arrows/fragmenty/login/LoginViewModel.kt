@@ -1,4 +1,4 @@
-package com.example.arrows.fragmenty.level
+package com.example.arrows.fragmenty.login
 
 import android.app.Application
 import android.widget.Toast
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 /**
  * ViewModel pre levelFragment
  */
-class LevelViewModel(private val database: UserDatabaseDao, application: Application) : AndroidViewModel(application) {
+class LoginViewModel(private val database: UserDatabaseDao, application: Application) : AndroidViewModel(application) {
     private var _submitVisible = MutableLiveData(true)
     private var _clearVisible = MutableLiveData(false)
     private var _playVisible = MutableLiveData(false)
@@ -84,6 +84,8 @@ class LevelViewModel(private val database: UserDatabaseDao, application: Applica
             clear()
             _clearVisible.value = false
         }
+        setReadyButtonVisibility(false)
+        _oznacil = false
     }
 
     /**

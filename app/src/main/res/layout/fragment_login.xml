@@ -9,7 +9,7 @@
     <data>
         <variable
             name="levelViewModel"
-            type="com.example.arrows.fragmenty.level.LevelViewModel" />
+            type="com.example.arrows.fragmenty.login.LoginViewModel" />
     </data>
 
     <FrameLayout

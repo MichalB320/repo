@@ -7,13 +7,13 @@
 <data>
     <variable
         name="levelViewModel"
-        type="com.example.arrows.fragmenty.level.LevelViewModel" />
+        type="com.example.arrows.fragmenty.login.LoginViewModel" />
     <variable
         name="user"
         type="com.example.arrows.database.User"/>
     <variable
         name="clickListener"
-        type="com.example.arrows.fragmenty.level.UserListener" />
+        type="com.example.arrows.fragmenty.login.UserListener" />
 
 </data>
 
